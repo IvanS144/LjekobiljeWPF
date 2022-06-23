@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Ljekobilje.BasicSearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ljekobilje"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="800">
+    <StackPanel Orientation="Horizontal">
+        <Button Content="Search"></Button>
+        <TextBox MinWidth="100"/>
+            <Label Content="Pretraži po:"/>
+        <ComboBox x:Name="SearchCategoryCombo" MinWidth="100" SelectedIndex="0"/>
+    </StackPanel>
+    <!--<Grid>-->
+            
+    <!--</Grid>-->
+</UserControl>

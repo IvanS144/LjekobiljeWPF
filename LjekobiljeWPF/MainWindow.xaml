@@ -1,0 +1,21 @@
+﻿<Window x:Class="Ljekobilje.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ljekobilje"
+        mc:Ignorable="d"
+        Background="{DynamicResource BackgroundColor}"
+        Title="Ljekobilje" MinHeight="750" MinWidth="1000">
+    <StackPanel>
+        <local:NavMenu x:Name="Menu" Margin="0,0,0,10"/>
+        <!--<Menu>
+            <MenuItem Header="Odaberite jezik">
+                <MenuItem Header="Engkeski" Tag="Engleski" Click="MenuItem_Click"/>
+                <MenuItem Header="Srpski" Tag="Srpski" Click="MenuItem_Click"/>
+
+            </MenuItem>
+        </Menu>-->
+        <Frame NavigationUIVisibility="Hidden" x:Name="Frame"/>
+    </StackPanel>
+</Window>

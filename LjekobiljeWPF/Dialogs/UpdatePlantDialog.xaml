@@ -1,0 +1,27 @@
+﻿<Window x:Class="Ljekobilje.Dialogs.UpdatePlantDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ljekobilje"
+        xmlns:control="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="UpdatePlantDialog"
+        Background="{DynamicResource BackgroundColor}"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight">
+    <Grid Margin="0,0,5,5">
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource PlantName}" HorizontalAlignment="Left" Margin="32,53,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource LatinName}" HorizontalAlignment="Left" Margin="32,81,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource MedicName}" HorizontalAlignment="Left" Margin="32,107,0,0" VerticalAlignment="Top"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="PlantNameTextBox" HorizontalAlignment="Left" Height="23" Margin="135,53,0,0" TextWrapping="Wrap" Text="{Binding PlantName, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="LatinNameTextBox" HorizontalAlignment="Left" Height="23" Margin="135,81,0,0" TextWrapping="Wrap" Text="{Binding LatinName, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="MedicNameTextBox" HorizontalAlignment="Left" Height="23" Margin="135,109,0,0" TextWrapping="Wrap" Text="{Binding MedicName, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="{DynamicResource Ok}" HorizontalAlignment="Left" Margin="128,213,0,0" VerticalAlignment="Top" Width="60" Click="OkButtonClicked" IsDefault="True"/>
+        <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Left" Margin="212,213,0,0" VerticalAlignment="Top" Width="60" Click="CancelButtonClicked" IsCancel="True"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource RetailPrice}" HorizontalAlignment="Left" Margin="32,137,0,0" VerticalAlignment="Top"/>
+        <control:DecimalUpDown Style="{DynamicResource Style}" x:Name="RetailPrice" HorizontalAlignment="Left" Height="23" Margin="135,137,0,0" Value="{Binding RetailPrice, Mode=OneTime}" Minimum="0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

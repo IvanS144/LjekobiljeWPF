@@ -1,0 +1,22 @@
+﻿<Window x:Class="Ljekobilje.UpdateCooperantAccountDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ljekobilje"
+        mc:Ignorable="d"
+        Title="{DynamicResource UpdateAccount}"
+        Background="{DynamicResource BackgroundColor}"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight">
+    <Grid Margin="0,0,5,5">
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Bank}" HorizontalAlignment="Left" Margin="32,53,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Account}" HorizontalAlignment="Left" Margin="32,81,0,0" VerticalAlignment="Top"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="BankTextBox" HorizontalAlignment="Left" Height="23" Margin="135,53,0,0" TextWrapping="Wrap" Text="{Binding Bank, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="AccountNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="135,81,0,0" TextWrapping="Wrap" Text="{Binding AccountNumber, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="{DynamicResource Ok}" HorizontalAlignment="Left" Margin="128,213,0,0" VerticalAlignment="Top" Width="60" Click="OkButtonClicked" IsDefault="True"/>
+        <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Left" Margin="212,213,0,0" VerticalAlignment="Top" Width="60" Click="CancelButtonClicked" IsCancel="True"/>
+
+    </Grid>
+</Window>

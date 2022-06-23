@@ -1,0 +1,27 @@
+﻿<Window x:Class="Ljekobilje.Dialogs.UpdateUserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ljekobilje.Dialogs"
+        mc:Ignorable="d"
+        Title="{DynamicResource UpdateUser}"
+        Background="{DynamicResource BackgroundColor}"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight">
+    <Grid Margin="0,0,5,5">
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Username}" HorizontalAlignment="Left" Margin="44,40,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="44,72,0,0" VerticalAlignment="Top"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="107,46,0,0" TextWrapping="Wrap" Text="{Binding Username, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="107,75,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="{DynamicResource Ok}" HorizontalAlignment="Left" Margin="183,178,0,0" VerticalAlignment="Top" Width="60" Click="OkButtonClicked" IsDefault="True"/>
+        <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Left" Margin="259,178,0,0" VerticalAlignment="Top" Width="61" Click="CancelButtonClicked" IsCancel="True"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource UserType}" HorizontalAlignment="Left" Margin="44,111,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="UserTypeComboBox" HorizontalAlignment="Left" Margin="107,113,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="{DynamicResource Trainee}"/>
+            <ComboBoxItem Content="{DynamicResource Worker}"/>
+            <ComboBoxItem Content="{DynamicResource Administrator}"/>
+        </ComboBox>
+
+    </Grid>
+</Window>

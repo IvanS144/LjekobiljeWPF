@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:control="http://schemas.xceed.com/wpf/xaml/toolkit">
+
+    <Style TargetType="Button" x:Key="AddButton">
+        <Setter Property="Background" Value="#4287f5"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </Style.Resources>
+        <!--<Setter Property="BorderThickness" Value="2px"/>-->
+    </Style>
+    <Style TargetType="Button" x:Key="UpdateButton">
+        <Setter Property="Background" Value="#42f5e0"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </Style.Resources>
+        <!--<Setter Property="BorderThickness" Value="2px"/>-->
+    </Style>
+    <Style TargetType="Button" x:Key="DangerButton">
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </Style.Resources>
+        <!--<Setter Property="BorderThickness" Value="2px"/>-->
+    </Style>
+    <Style TargetType="DataGrid" x:Key="DataGridStyle">
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="BorderBrush" Value="#4287f5"/>
+        <Setter Property="BorderThickness" Value="2px"/>
+    </Style>
+    <Style TargetType="TextBox" x:Key="TextBoxStyle">
+        <Setter Property="BorderBrush" Value="#4287f5"/>
+        <Setter Property="BorderThickness" Value="2px"/>
+    </Style>
+    <Style TargetType="control:DecimalUpDown" x:Key="Style">
+        <Setter Property="BorderBrush" Value="#4287f5"/>
+        <Setter Property="BorderThickness" Value="2px"/>
+    </Style>
+    <Style TargetType="ComboBoxItem" x:Key="ComboBoxItemStyle">
+        <!--<Setter Property="Background" Value="#3F4749"/>-->
+        <!--<Setter Property="Foreground" Value="White"/>-->
+        <!--<Setter Property="BorderBrush" Value="#404E59"/>-->
+        <!--<Setter Property="BorderThickness" Value="2px"/>-->
+    </Style>
+    <Style TargetType="ComboBox" x:Key="ComboBoxStyle">
+        <!--<Setter Property="Background" Value="#3F4749"/>-->
+        <!--<Setter Property="Foreground" Value="White"/>-->
+        <!--<Setter Property="BorderBrush" Value="#404E59"/>-->
+        <!--<Setter Property="BorderThickness" Value="2px"/>-->
+    </Style>
+    <Style TargetType="Label" x:Key="LabelStyle">
+        <!--<Setter Property="Foreground" Value="White"/>-->
+    </Style>
+    <SolidColorBrush x:Key="BackgroundColor" Color="#D96907"/>
+    <SolidColorBrush x:Key="ForegroundColor" Color="White"/>
+    <SolidColorBrush x:Key="IntelijBlue" Color="#404E59"/>
+    <Image Source="settings.png" x:Key="SettingsImage"/>
+    <Image Source="plant.png" x:Key="PlantImage"/>
+    <Image Source="purchases.png" x:Key="PurchasesImage"/>
+    <Image Source="stations.png" x:Key="StationsImage"/>
+    <Image Source="admin.png" x:Key="AdminImage"/>
+    <Image Source="cooperant.png" x:Key="CooperantImage"/>
+    <Image Source="payments.png" x:Key="PaymentsImage"/>
+    <Image Source="logout.png" x:Key="LogoutImage"/>
+    <SolidColorBrush x:Key="NavMenu" Color="#732002"/>
+
+</ResourceDictionary>
