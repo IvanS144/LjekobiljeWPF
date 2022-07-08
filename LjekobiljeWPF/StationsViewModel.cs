@@ -59,7 +59,7 @@ namespace Ljekobilje
         public void Delete(Stationsview stationVw)
         {
             YesNoDialog dialog = new YesNoDialog();
-            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete otkupnu stanicu čiji je id " : "Do you want to delete station which id is ") + stationVw.StationId + " ?");
+            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete otkupnu stanicu čiji je id " : "Do you want to delete station whose id is ") + stationVw.StationId + " ?");
             if (result == true)
             {
                 try
@@ -123,7 +123,7 @@ namespace Ljekobilje
             catch
             {
 
-                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Dodavanje nije uspjelo, provjerite polja koja ste unjeli i pokušajte ponovo" : "Failed to add new station, check the fields you entered and try again");
+                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Kreiranje nije uspjelo, provjerite polja koja ste unjeli i pokušajte ponovo" : "Failed to add new station, check the fields you entered and try again");
             }
         }
 

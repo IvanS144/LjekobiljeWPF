@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Ljekobilje"
         xmlns:control="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="UpdatePlantDialog"
+        Title="{DynamicResource UpdatePlant}"
         Background="{DynamicResource BackgroundColor}"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight">

@@ -15,7 +15,7 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
 
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Station}"/>
-                <ComboBox x:Name="StationsComboBox" ItemsSource="{Binding Stations}" SelectedValuePath="StationId" SelectedValue="{Binding DataContext.SelectedStationId, ElementName=This, Mode=TwoWay}"  MinWidth="200">
+                <ComboBox x:Name="StationsComboBox" ItemsSource="{Binding Stations}" SelectedValuePath="StationId" SelectedValue="{Binding DataContext.SelectedStationId, ElementName=This, Mode=TwoWay}"  MinWidth="200" IsEditable="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -31,7 +31,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Cooperant}"/>
-                <ComboBox ItemsSource="{Binding SelectedItem.Cooperants, ElementName=StationsComboBox}" SelectedValuePath="CooperantId" SelectedValue="{Binding DataContext.SelectedCooperantId, ElementName=This, Mode=TwoWay}" MinWidth="200">
+                <ComboBox ItemsSource="{Binding SelectedItem.Cooperants, ElementName=StationsComboBox}" SelectedValuePath="CooperantId" SelectedValue="{Binding DataContext.SelectedCooperantId, ElementName=This, Mode=TwoWay}" MinWidth="200" IsEditable="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -144,7 +144,7 @@
                 </GroupBox.Header>
                 <StackPanel Orientation="Horizontal">
                     <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Plant}"/>
-                    <ComboBox ItemsSource="{Binding Plants}" MinWidth="100" SelectedValuePath="PlantId" SelectedValue="{Binding DataContext.SelectedPlantId, ElementName=This, Mode=TwoWay}">
+                    <ComboBox ItemsSource="{Binding Plants}" MinWidth="100" SelectedValuePath="PlantId" SelectedValue="{Binding DataContext.SelectedPlantId, ElementName=This, Mode=TwoWay}" IsEditable="True">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>

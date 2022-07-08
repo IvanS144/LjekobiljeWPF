@@ -58,7 +58,7 @@ namespace Ljekobilje.View
                 catch
                 {
 
-                    new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Ažuriranje nij euspjelo, pokušajte ponovo" : "Failed to update bank account, try again");
+                    new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Ažuriranje nije uspjelo, pokušajte ponovo" : "Failed to update bank account, try again");
                 }
             }
         }
@@ -85,14 +85,14 @@ namespace Ljekobilje.View
             catch
             {
 
-                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Dodavanje nije uspjelo, provjerite polja koj aste unjeli i pokušajte ponovo" : "Failed to add new bank account, check the fileds you entered and try again");
+                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Kreiranje nije uspjelo, provjerite polja koja ste unjeli i pokušajte ponovo" : "Failed to add new bank account, check the fileds you entered and try again");
             }
         }
 
         public void Delete(CooperantAccountProjection account)
         {
             YesNoDialog dialog = new YesNoDialog();
-            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete račun čiji je id " : "Do you want to delete account which id is ") + account.AccountId + " ?");
+            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete račun čiji je id " : "Do you want to delete account whose id is ") + account.AccountId + " ?");
             if(result == true)
             {
                 try

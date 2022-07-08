@@ -48,7 +48,7 @@
     <system:String x:Key="Worker">Referent</system:String>
     <system:String x:Key="UserType">Tip korisnika</system:String>
     <system:String x:Key="Data">Opšti podaci</system:String>
-    <system:String x:Key="Entry">Stavka</system:String>
+    <system:String x:Key="Entries">Stavke otkupa</system:String>
     <system:String x:Key="AddEntry">Dodaj stavku</system:String>
     <system:String x:Key="Create">Kreiraj</system:String>
     <system:String x:Key="Quantity">Količina</system:String>
@@ -72,5 +72,7 @@
     <system:String x:Key="Warning">Upozorenje</system:String>
     <system:String x:Key="Error">Greška</system:String>
     <system:String x:Key="NewEntry">Kreiraj novu stavku otkupa</system:String>
+    <system:String x:Key="LoginWindow">Prijava</system:String>
+
 
 </ResourceDictionary>

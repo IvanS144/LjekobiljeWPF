@@ -5,13 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ljekobilje"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="393" Width="663">
-    <Grid>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Username}" HorizontalAlignment="Left" Margin="414,67,0,0" VerticalAlignment="Top"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Username, Mode=TwoWay}" HorizontalAlignment="Left" Margin="386,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="416,111,0,0" VerticalAlignment="Top"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Password, Mode=TwoWay}" HorizontalAlignment="Left" Margin="386,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Style="{DynamicResource AddButton}" Content="{DynamicResource Login}" Command="{Binding ElementName=_LoginWindow, Path=DataContext.LoginCommand}" Margin="386,179,158,159"/>
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        Title="{DynamicResource LoginWindow}">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="TextBoxStyle1">
+            <Setter Property="BorderBrush" Value="#FFF28E13"/>
+            <Setter Property="BorderThickness" Value="2px"/>
+            <Setter Property="Background" Value="#FFFBE0A1"/>
+            <Setter Property="Foreground" Value="black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LabelStyle1">
+            <Setter Property="Foreground" Value="black"/>
+        </Style>
+        <Style TargetType="Button" x:Key="LoginButton">
+            <Setter Property="Background" Value="#F28E13"/>
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Height" Value="45"/>
+            <!--<Setter Property="BorderBrush" Value="White"/>-->
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <!--<Setter Property="BorderThickness" Value="2px"/>-->
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFFFEECB">
+        <Label Style="{StaticResource LabelStyle1}" Content="{DynamicResource Username}" Margin="0,0,175,284" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86"/>
+        <TextBox Style="{StaticResource TextBoxStyle1}"  Text="{Binding Username, Mode=TwoWay}" Margin="0,0,157,264" TextWrapping="Wrap" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120" />
+        <Label Style="{StaticResource LabelStyle1}" Content="{DynamicResource Password}" Margin="421,111,192,240"/>
+        <TextBox Style="{StaticResource TextBoxStyle1}" Text="{Binding Password, Mode=TwoWay}" Margin="0,0,157,220" TextWrapping="Wrap" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120"/>
+        <Button Style="{StaticResource LoginButton}" Content="{DynamicResource Login}" Command="{Binding ElementName=_LoginWindow, Path=DataContext.LoginCommand}" Margin="0,0,158,160" Height="45" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="119"/>
+        <Image Height="300"  Margin="29,38,321,26" Source="/Assets/ljekobilja3.png"/>
 
     </Grid>
 </Window>

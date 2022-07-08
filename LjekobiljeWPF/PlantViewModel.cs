@@ -51,7 +51,7 @@ namespace Ljekobilje
         void DeletePlant(PlantProjection plantProjection)
         {
             YesNoDialog dialog = new YesNoDialog();
-            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete biljku čiji je id " : "Do you want to delete plant which id is ") + plantProjection.PlantId + " ?");
+            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete biljku čiji je id " : "Do you want to delete plant whose id is ") + plantProjection.PlantId + " ?");
             if (result == true)
             {
                 try
@@ -136,7 +136,7 @@ namespace Ljekobilje
             catch
             {
 
-                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Dodavanje nije uspjelo, provjerite polja koja ste unijeli i probajte ponovo" : "Failed to add new plant, check the fields you entered and try again");
+                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Kreiranje nije uspjelo, provjerite polja koja ste unijeli i probajte ponovo" : "Failed to add new plant, check the fields you entered and try again");
             }
         }
 

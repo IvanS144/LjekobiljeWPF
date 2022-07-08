@@ -90,7 +90,7 @@ namespace Ljekobilje
             catch
             {
 
-                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Dodavanje nije uspjelo, provjerite polja koja ste unjeli i pokušajte ponovo" : "Failed to add new user, check the fields you entered and try again");
+                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Kreiranje nije uspjelo, provjerite polja koja ste unjeli i pokušajte ponovo" : "Failed to add new user, check the fields you entered and try again");
             }
         }
 

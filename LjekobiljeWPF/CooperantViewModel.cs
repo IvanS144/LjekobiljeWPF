@@ -153,7 +153,7 @@ namespace Ljekobilje
             catch
             {
                 
-                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Dodavanje nije uspjelo, provjerite unesena polja" : "Failed to add new cooperant, check the fileds you entered");
+                new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Kreiranje nije uspjelo, provjerite unesena polja" : "Failed to add new cooperant, check the fileds you entered");
             }
         }
 

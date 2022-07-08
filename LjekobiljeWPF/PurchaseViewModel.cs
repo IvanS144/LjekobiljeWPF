@@ -63,7 +63,7 @@ namespace Ljekobilje
         public void Delete(Purchasespaid purchase)
         {
             YesNoDialog dialog = new YesNoDialog();
-            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete otkup čiji je id " + purchase.PlantPurchaseId + " (ova alcija takođe će obrisati i isplatu ako je otkup isplaćen)" : "Do you want to delete purchase which id is " + purchase.PlantPurchaseId + " (this action will also delete related payment if this purchase has been paid)"));
+            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete otkup čiji je id " + purchase.PlantPurchaseId + " (ova akcija takođe će obrisati i isplatu ako je otkup isplaćen)" : "Do you want to delete purchase whose id is " + purchase.PlantPurchaseId + " (this action will also delete related payment if this purchase has been paid)"));
             if (result == true)
             {
                 try
@@ -89,7 +89,7 @@ namespace Ljekobilje
         public void Pay(Purchasespaid purchase)
         {
             YesNoDialog dialog = new YesNoDialog();
-            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da platite otkup čiji je id " + purchase.PlantPurchaseId +" ?": "Do you want to pay purchase which id is " + purchase.PlantPurchaseId + " ?"));
+            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da platite otkup čiji je id " + purchase.PlantPurchaseId +" ?": "Do you want to pay purchase whose id is " + purchase.PlantPurchaseId + " ?"));
             if (result == true)
             {
                 try

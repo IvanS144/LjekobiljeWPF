@@ -13,6 +13,7 @@
     <None Remove="Assets\delete.png" />
     <None Remove="Assets\edit5.png" />
     <None Remove="Assets\icons8-cancel-48.png" />
+    <None Remove="Assets\ljekobilja3.png" />
     <None Remove="cooperant.png" />
     <None Remove="edit.png" />
     <None Remove="edit2.png" />
@@ -39,6 +40,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\icons8-cancel-48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ljekobilja3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="cooperant.png">

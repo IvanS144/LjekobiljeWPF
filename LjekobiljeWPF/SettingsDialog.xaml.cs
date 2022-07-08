@@ -35,7 +35,7 @@ namespace Ljekobilje
             switch (language)
             {
                 case 1: LanguageButton1.IsChecked = true; break;
-                case 2: LanguageButton2.IsChecked = true; break;
+                case 2: LanguageButton2.IsChecked = true; break; 
                 default:
                     break;
             }
@@ -94,7 +94,7 @@ namespace Ljekobilje
             RadioButton button = sender as RadioButton;
             switch (button.Tag)
             {
-                case "Light": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\LightTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 1; break; }
+                case "Light": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Yelow.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 1; break; }
                 case "Dark": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\DarkTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; app.CurrentUser.Theme = 2; break; }
                 case "Green": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\plant-theme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 1; break; }
                 default: break;

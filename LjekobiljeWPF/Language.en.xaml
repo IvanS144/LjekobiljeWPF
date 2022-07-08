@@ -75,5 +75,6 @@
     <system:String x:Key="Warning">Warning</system:String>
     <system:String x:Key="Error">Error</system:String>
     <system:String x:Key="NewEntry">Create new purchase entry</system:String>
+    <system:String x:Key="LoginWindow">Login</system:String>
 
 </ResourceDictionary>

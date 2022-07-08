@@ -102,7 +102,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource DangerButton}" Content="{DynamicResource Accounts}" Command="{Binding ElementName=_CooperantsPage, Path=DataContext.ViewAccountsCommand}" CommandParameter="{Binding}"/>
+                                <Button Style="{DynamicResource AddButton}" Content="{DynamicResource Accounts}" Command="{Binding ElementName=_CooperantsPage, Path=DataContext.ViewAccountsCommand}" CommandParameter="{Binding}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -130,13 +130,13 @@
                         <!--</StackPanel>-->
                         <TextBox Style="{DynamicResource TextBoxStyle}" MinWidth="110" Text="{Binding Address, Mode=TwoWay}"/>
                         <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Station}"/>
-                        <ComboBox ItemsSource="{Binding Stations}" SelectedValuePath="StationId" SelectedValue="{Binding DataContext.SelectedStationId, ElementName=_CooperantsPage, Mode=TwoWay}" MinWidth="110" Margin="0,0,10,0">
+                        <ComboBox ItemsSource="{Binding Stations}" SelectedValuePath="StationId" SelectedValue="{Binding DataContext.SelectedStationId, ElementName=_CooperantsPage, Mode=TwoWay}" MinWidth="110" Margin="0,0,10,0" IsEditable="True">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock>
                                         <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}{0} {1} {2}">
-                                                <Binding Path="StationID"/>
+                                            <MultiBinding StringFormat="{}[{0}] {1} {2}">
+                                                <Binding Path="StationId"/>
                                                 <Binding Path="Adress"/>
                                                 <Binding Path="City"/>
                                             </MultiBinding>

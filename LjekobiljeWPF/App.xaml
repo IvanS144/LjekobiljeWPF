@@ -6,8 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Language.en.xaml"/>
-                <ResourceDictionary Source="terzitheme.xaml"/>
+                <ResourceDictionary Source="Languages.sr.xaml"/>
+                <ResourceDictionary Source="Yelow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          

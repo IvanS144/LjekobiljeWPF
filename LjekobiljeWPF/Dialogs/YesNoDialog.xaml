@@ -9,8 +9,8 @@
         ResizeMode="NoResize"
         Title="{DynamicResource Warning}" SizeToContent="WidthAndHeight">
     <Grid Margin="0,0,5,5">
-        <Button Content="{DynamicResource Yes}" HorizontalAlignment="Left" Margin="209,156,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click_1"/>
-        <Button Content="{DynamicResource No}" HorizontalAlignment="Left" Margin="308,156,0,0" VerticalAlignment="Top" Width="82" Click="Button_Click"/>
+        <Button Content="{DynamicResource Yes}" HorizontalAlignment="Left" Margin="209,156,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click_1" IsDefault="True"/>
+        <Button Content="{DynamicResource No}" HorizontalAlignment="Left" Margin="308,156,0,0" VerticalAlignment="Top" Width="82" Click="Button_Click" IsCancel="True"/>
         <TextBlock Foreground="{DynamicResource ForegroundColor}" x:Name="TextBlock" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="141" Width="380"/>
     </Grid>
 </Window>

@@ -13,20 +13,20 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource FirstName}" HorizontalAlignment="Left" Margin="36,40,0,0" VerticalAlignment="Top"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource LastName}" HorizontalAlignment="Left" Height="28" Margin="36,76,0,0" VerticalAlignment="Top" Width="65"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Adress}" HorizontalAlignment="Left" Margin="36,114,0,0" VerticalAlignment="Top"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Email}" HorizontalAlignment="Left" Margin="36,149,0,0" VerticalAlignment="Top"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Phone}" HorizontalAlignment="Left" Margin="36,189,0,0" VerticalAlignment="Top"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource City}" HorizontalAlignment="Left" Margin="36,228,0,0" VerticalAlignment="Top"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="FirstNameTextBox"  HorizontalAlignment="Left" Margin="138,43,0,0" TextWrapping="Wrap" Text="{Binding FirstName, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="LastNameTextBox" HorizontalAlignment="Left" Margin="138,80,0,0" TextWrapping="Wrap" Text="{Binding LastName, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="138,117,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="EmailTextBox"  HorizontalAlignment="Left" Margin="138,155,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="PhoneTextBox"  HorizontalAlignment="Left" Margin="138,192,0,0" TextWrapping="Wrap" Text="{Binding Phone, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="CityTextBox" HorizontalAlignment="Left" Margin="138,231,0,0" TextWrapping="Wrap" Text="{Binding City, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="StationsComboBox" HorizontalAlignment="Left" Margin="138,270,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Style="{DynamicResource LabelStyle}" Content="Station" HorizontalAlignment="Left" Margin="36,270,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource FirstName}" HorizontalAlignment="Left" Margin="15,40,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource LastName}" HorizontalAlignment="Left" Height="28" Margin="15,76,0,0" VerticalAlignment="Top" Width="65"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Adress}" HorizontalAlignment="Left" Margin="15,114,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Email}" HorizontalAlignment="Left" Margin="15,149,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Phone}" HorizontalAlignment="Left" Margin="17,189,0,0" VerticalAlignment="Top"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource City}" HorizontalAlignment="Left" Margin="17,231,0,0" VerticalAlignment="Top"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="FirstNameTextBox"  HorizontalAlignment="Left" Margin="109,43,0,0" TextWrapping="Wrap" Text="{Binding FirstName, Mode=OneTime}" VerticalAlignment="Top" Width="149"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="LastNameTextBox" HorizontalAlignment="Left" Margin="109,80,0,0" TextWrapping="Wrap" Text="{Binding LastName, Mode=OneTime}" VerticalAlignment="Top" Width="149"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="AddressTextBox" HorizontalAlignment="Left" Margin="109,117,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=OneTime}" VerticalAlignment="Top" Width="149"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="EmailTextBox"  HorizontalAlignment="Left" Margin="109,155,0,0" TextWrapping="Wrap" Text="{Binding Email, Mode=OneTime}" VerticalAlignment="Top" Width="149"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="PhoneTextBox"  HorizontalAlignment="Left" Margin="109,192,0,0" TextWrapping="Wrap" Text="{Binding Phone, Mode=OneTime}" VerticalAlignment="Top" Width="149"/>
+        <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="CityTextBox" HorizontalAlignment="Left" Margin="109,231,0,0" TextWrapping="Wrap" Text="{Binding City, Mode=OneTime}" VerticalAlignment="Top" Width="149"/>
+        <ComboBox x:Name="StationsComboBox" HorizontalAlignment="Left" Margin="109,270,0,0" VerticalAlignment="Top" Width="149" IsEditable="True"/>
+        <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Station}" HorizontalAlignment="Left" Margin="17,270,0,0" VerticalAlignment="Top"/>
         <Button Content="{DynamicResource Ok}" HorizontalAlignment="Left" Margin="138,353,0,0" VerticalAlignment="Top" Width="60" Click="OkButtonClicked" IsDefault="True"/>
         <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Left" Margin="221,353,0,0" VerticalAlignment="Top" Width="61" Click="CancelButtonClicked" IsCancel="True"/>
 
