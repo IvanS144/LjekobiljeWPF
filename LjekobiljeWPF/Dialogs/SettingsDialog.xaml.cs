@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,31 +61,7 @@ namespace Ljekobilje
 
         private void OkButton_Clicked(object sender, RoutedEventArgs e)
         {
-            bool changed = false;
-            User u = (Application.Current as App).CurrentUser;
-            if(theme!=u.Theme)
-            {
-                u.Theme = theme;
-                changed = true;
-            }
-
-
-
-
-
-            if(language!=u.Language)
-            {
-                u.Language = language;
-                changed = true;
-            }
-            if(changed)
-            {
-                using(LjekobiljeEntities entities = new LjekobiljeEntities())
-                {
-                    entities.Entry(u).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                    entities.SaveChanges();
-                }
-            }
+            SaveSettings();
             DialogResult = true;
         }
 
@@ -98,6 +75,41 @@ namespace Ljekobilje
                 case "Dark": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\DarkTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; app.CurrentUser.Theme = 2; break; }
                 case "Green": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\plant-theme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 1; break; }
                 default: break;
+            }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            SaveSettings();
+            base.OnClosing(e);
+        }
+
+        private void SaveSettings()
+        {
+            bool changed = false;
+            User u = (Application.Current as App).CurrentUser;
+            if (theme != u.Theme)
+            {
+                u.Theme = theme;
+                changed = true;
+            }
+
+
+
+
+
+            if (language != u.Language)
+            {
+                u.Language = language;
+                changed = true;
+            }
+            if (changed)
+            {
+                using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                {
+                    entities.Entry(u).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    entities.SaveChanges();
+                }
             }
         }
     }
