@@ -10,8 +10,7 @@
       Title="StationsPage">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <!--<Button Content="Search"></Button>-->
-            <Image Source="icons8-search-48.png" Height="20"/>
+            <Image Source="/Assets/icons8-search-48.png" Height="20"/>
             <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
             <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Search}"/>
             <ComboBox MinWidth="100" SelectedIndex="0" SelectedValuePath="Content" SelectedValue="{Binding ElementName=_StationsPage, Path=DataContext.SelectedCategory, Mode=TwoWay}">
@@ -23,65 +22,62 @@
                 <Image Source="/Assets/icons8-cancel-48.png" Height="20"/>
             </Button>
         </StackPanel>
-        <!--<ScrollViewer MinHeight="250">-->
-            <DataGrid Style="{DynamicResource DataGridStyle}" Height="400" ItemsSource="{Binding Stations}" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="22*" Binding="{Binding StationId}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource StationNumber}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="22*" Binding="{Binding Adress}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource Adress}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="22*" Binding="{Binding City}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource City}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding TotalCooperants}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource NumberOfCooperants}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTemplateColumn Width="100">
+        <DataGrid Style="{DynamicResource DataGridStyle}" Height="400" ItemsSource="{Binding Stations}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="22*" Binding="{Binding StationId}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource StationNumber}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="22*" Binding="{Binding Adress}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource Adress}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="22*" Binding="{Binding City}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource City}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding TotalCooperants}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource NumberOfCooperants}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <Image Margin="35,0,0,0" Source="/Assets/edit5.png" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Style="{DynamicResource UpdateButton}" Content="{DynamicResource Update}" Command="{Binding ElementName=_StationsPage, Path=DataContext.UpdateCommand}" CommandParameter="{Binding}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100">
+                        <DataTemplate>
+                            <Button Style="{DynamicResource UpdateButton}" Content="{DynamicResource Update}" Command="{Binding ElementName=_StationsPage, Path=DataContext.UpdateCommand}" CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <Image Margin="35,0,0,0" Source="/Assets/delete.png" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Style="{DynamicResource DangerButton}" Content="{DynamicResource Delete}" Command="{Binding ElementName=_StationsPage, Path=DataContext.DeleteCommand}" CommandParameter="{Binding}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-
-        <!--</ScrollViewer>-->
+                        <DataTemplate>
+                            <Button Style="{DynamicResource DangerButton}" Content="{DynamicResource Delete}" Command="{Binding ElementName=_StationsPage, Path=DataContext.DeleteCommand}" CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <GroupBox HorizontalAlignment="Left" Height="60" Margin="2,2,2,2">
             <GroupBox.Header>
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource AddNewEntryHeader}"/>

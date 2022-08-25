@@ -1,4 +1,6 @@
-﻿using Ljekobilje.Dialogs;
+﻿using Ljekobilje;
+using Ljekobilje.Dialogs;
+using LjekobiljeWPF;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Ljekobilje
+namespace LjekobiljeWPF.ViewModel
 {
     public class AddPurchaseViewModel : BaseViewModel
     {
@@ -25,13 +27,15 @@ namespace Ljekobilje
 
         public decimal Quantity { get; set; }
 
+        private PlantPurchase purchase;
+
         public DateTime? DatePurchased { get; set; } = DateTime.Now.Date;
         public ObservableCollection<Plant> Plants { get => _plants; set { _plants = value; NotifyPropertyChanged("Plants"); } }
         public ObservableCollection<Station> Stations { get => _stations; set { _stations = value; NotifyPropertyChanged("Stations"); } }
 
         private ObservableCollection<PlantPurchaseEntry> _purchaseEntries = new ObservableCollection<PlantPurchaseEntry>();
 
-        public ObservableCollection<PlantPurchaseEntry> PurchaseEntries { get => _purchaseEntries; }
+        public ObservableCollection<PlantPurchaseEntry> PurchaseEntries { get => _purchaseEntries; set { _purchaseEntries = value; NotifyPropertyChanged("PurchaseEntries"); } }
 
         public ActionCommand AddEntryCommand { get; set; }
         public DelegateCommand<PlantPurchaseEntry> DeleteEntryCommand { get; set; }
@@ -42,13 +46,25 @@ namespace Ljekobilje
         public AddPurchaseViewModel(Window window)
         {
             _window = window;
-            using (LjekobiljeEntities entities = new LjekobiljeEntities())
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
             {
-                (from station in entities.Stations.Include("Cooperants") select station).ToList().ForEach(e => _stations.Add(e));
-                (from plant in entities.Plants select plant).ToList().ForEach(e => _plants.Add(e));
+                (from station in db.Stations.Include("Cooperants") select station).ToList().ForEach(e => _stations.Add(e));
+                (from plant in db.Plants select plant).ToList().ForEach(e => _plants.Add(e));
                 AddEntryCommand = new ActionCommand(AddEntry);
                 DeleteEntryCommand = new DelegateCommand<PlantPurchaseEntry>(DeleteEntry);
                 AddPurchaseCommand = new ActionCommand(AddPurchase);
+            }
+        }
+
+        public AddPurchaseViewModel(Window window, int purchaseId) : this(window)
+        {
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
+            {
+                purchase = (from purchase in db.PlantPurchases.Include("PlantPurchaseEntries.Plant") where purchase.PlantPurchaseId == purchaseId select purchase).First();
+                PurchaseEntries = new ObservableCollection<PlantPurchaseEntry>(purchase.PlantPurchaseEntries.ToList());
+                DatePurchased = purchase.DatePurchased;
+                SelectedStationId = purchase.StationId;
+                SelectedCooperantId = purchase.CooperantId;
             }
         }
 
@@ -59,9 +75,8 @@ namespace Ljekobilje
                 PlantPurchaseEntry plantPurchaseEntry = new PlantPurchaseEntry();
                 plantPurchaseEntry.PlantId = SelectedPlantId;
                 plantPurchaseEntry.Quantity = Quantity;
-
-
                 plantPurchaseEntry.RetailPrice = RetailPrice;
+                plantPurchaseEntry.Plant = GetPlantById(SelectedPlantId);
                 PurchaseEntries.Add(plantPurchaseEntry);
             }
 
@@ -69,6 +84,14 @@ namespace Ljekobilje
         }
         public void DeleteEntry(PlantPurchaseEntry plantPurchaseEntry)
         {
+            if (purchase != null && plantPurchaseEntry.PlantPurchaseId > 0)
+            {
+                using (var db = new LjekobiljeEntities())
+                {
+                    db.Entry(plantPurchaseEntry).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+            }
             PurchaseEntries.Remove(plantPurchaseEntry);
         }
 
@@ -76,29 +99,54 @@ namespace Ljekobilje
         {
             if (SelectedCooperantId > 0 && SelectedStationId > 0 && PurchaseEntries.Count > 0)
             {
-                using (LjekobiljeEntities ljekobiljeEntities = new LjekobiljeEntities())
+                using (LjekobiljeEntities db = new LjekobiljeEntities())
                 {
-                    PlantPurchase plantPurchase = new PlantPurchase();
+                    PlantPurchase plantPurchase = purchase != null ? purchase : new PlantPurchase();
+                    plantPurchase.Station = null;
+                    plantPurchase.Cooperant = null;
                     plantPurchase.CooperantId = SelectedCooperantId;
                     plantPurchase.StationId = SelectedStationId;
                     plantPurchase.DatePurchased = DatePurchased.Value;
                     decimal total = PurchaseEntries.Select(e => e.RetailPrice * e.Quantity).Sum();
                     plantPurchase.TotalValue = total;
-                    ljekobiljeEntities.PlantPurchases.Add(plantPurchase);
-                    ljekobiljeEntities.SaveChanges();
+                    if (purchase == null)
+                    {
+                        db.PlantPurchases.Add(plantPurchase);
+                    }
+                    else
+                    {
+                        db.Entry(plantPurchase).State = EntityState.Modified;
+                    }
+                    db.SaveChanges();
                     int id = plantPurchase.PlantPurchaseId;
                     foreach (var entry in PurchaseEntries)
                     {
-                        entry.PlantPurchaseId = id;
-                        ljekobiljeEntities.Entry(entry).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                        if (entry.PlantPurchaseId == 0)
+                        {
+                            entry.PlantPurchaseId = id;
+                            entry.PlantPurchase = null;
+                            db.Entry(entry).State = EntityState.Added;
+                        }
+                        else
+                        {
+                            db.Entry(entry).State = EntityState.Modified;
+                        }
                     }
-                    ljekobiljeEntities.SaveChanges();
+                    db.SaveChanges();
                 }
                 _window.Close();
             }
             else
             {
                 new ErrorDialog().ShowDialog(App.GetLanguage() > 1 ? "Morate popuniti sva polja u opštim podacima i dodati bar jednu stavku otkupa" : "You have to fill out all fields in general data and add at least one purchase entry");
+            }
+        }
+
+        private Plant GetPlantById(int plantId)
+        {
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
+            {
+                return db.Plants.Where(p => p.PlantId == plantId).First();
             }
         }
 

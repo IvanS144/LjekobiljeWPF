@@ -1,6 +1,6 @@
-﻿using System;
+﻿using LjekobiljeWPF.ViewModel;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +17,19 @@ using System.Windows.Shapes;
 namespace Ljekobilje
 {
     /// <summary>
-    /// Interaction logic for Cooperants.xaml
+    /// Interaction logic for PaymentsPage.xaml
     /// </summary>
-    public partial class CooperantsPage : Page
+    public partial class PaymentsPage : Page
     {
-        public CooperantsPage()
+        
+        public PaymentsPage()
         {
             InitializeComponent();
-            DataContext = new CooperantViewModel();
+            PaymentViewModel = new PaymentViewModel();
+            DataContext = PaymentViewModel;
+
         }
+
+        public PaymentViewModel PaymentViewModel { get; private set; }
     }
 }

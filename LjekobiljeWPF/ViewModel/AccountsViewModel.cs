@@ -1,5 +1,7 @@
-﻿using Ljekobilje.Dialogs;
+﻿using Ljekobilje;
+using Ljekobilje.Dialogs;
 using Ljekobilje.Projections;
+using LjekobiljeWPF;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ljekobilje.View
+namespace LjekobiljeWPF.ViewModel
 {
     public class AccountsViewModel
     {
@@ -31,9 +33,9 @@ namespace Ljekobilje.View
         public AccountsViewModel(int CooperantId)
         {
             _cid = CooperantId;
-            using(LjekobiljeEntities entities = new LjekobiljeEntities())
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
             {
-                (from account in entities.CooperantBankAccounts.Include("Account") where account.AccountId == CooperantId select account).ToList().ForEach(a => _accounts.Add(new CooperantAccountProjection(a)));
+                (from account in db.CooperantBankAccounts.Include("Account") where account.AccountId == CooperantId select account).ToList().ForEach(a => _accounts.Add(new CooperantAccountProjection(a)));
             }
             DeleteCommand = new DelegateCommand<CooperantAccountProjection>(Delete);
             UpdateCommand = new DelegateCommand<CooperantAccountProjection>(Update);
@@ -44,15 +46,15 @@ namespace Ljekobilje.View
         {
             UpdateCooperantAccountDialog dialog = new UpdateCooperantAccountDialog(account);
             bool? result = dialog.ShowDialog();
-            if(result == true)
+            if (result == true)
             {
                 try
                 {
                     (account.Bank, account.AccountNumber) = dialog.getFields();
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
-                        entities.Entry(account.Account.Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        entities.SaveChanges();
+                        db.Entry(account.Account.Account).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
                 catch
@@ -67,18 +69,18 @@ namespace Ljekobilje.View
         {
             try
             {
-                using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                using (LjekobiljeEntities db = new LjekobiljeEntities())
                 {
                     BankAccount account = new BankAccount();
                     account.Bank = Bank;
                     account.AccountNumber = AccountNumber;
-                    account = entities.BankAccounts.Add(account).Entity;
-                    entities.SaveChanges();
+                    account = db.BankAccounts.Add(account).Entity;
+                    db.SaveChanges();
                     CooperantBankAccount cooperantAccount = new CooperantBankAccount();
                     cooperantAccount.CooperantId = _cid;
                     cooperantAccount.AccountId = account.AccountId;
-                    cooperantAccount = entities.CooperantBankAccounts.Add(cooperantAccount).Entity;
-                    entities.SaveChanges();
+                    cooperantAccount = db.CooperantBankAccounts.Add(cooperantAccount).Entity;
+                    db.SaveChanges();
                     _accounts.Add(new CooperantAccountProjection(cooperantAccount));
                 }
             }
@@ -93,15 +95,15 @@ namespace Ljekobilje.View
         {
             YesNoDialog dialog = new YesNoDialog();
             bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete račun čiji je id " : "Do you want to delete account whose id is ") + account.AccountId + " ?");
-            if(result == true)
+            if (result == true)
             {
                 try
                 {
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
-                        entities.Entry(account.Account).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-                        entities.Entry(account.Account.Account).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-                        entities.SaveChanges();
+                        db.Entry(account.Account).State = EntityState.Deleted;
+                        db.Entry(account.Account.Account).State = EntityState.Deleted;
+                        db.SaveChanges();
                     }
                     Accounts.Remove(account);
                 }

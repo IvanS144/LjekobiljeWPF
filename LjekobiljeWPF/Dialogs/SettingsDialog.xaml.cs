@@ -53,7 +53,7 @@ namespace Ljekobilje
             switch(button.Tag)
             {
                 case "English": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Language.en.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; language = 2; break; }
-                case "Srpski": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Languages.sr.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; language=1; break; }
+                case "Srpski": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Language.sr.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; language=1; break; }
                 default: break;
             }
         }

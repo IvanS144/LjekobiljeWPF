@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ljekobilje;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Ljekobilje
+namespace LjekobiljeWPF
 {
     public class ActionCommand : ICommand
     {
@@ -19,7 +20,7 @@ namespace Ljekobilje
         public ActionCommand(Action action)
         {
             _ignoreUserType = false;
-            _action = action;   
+            _action = action;
         }
 
         public ActionCommand(Action action, bool ignoreUser)

@@ -91,13 +91,13 @@
     <SolidColorBrush x:Key="ForegroundColor" Color="black"/>
     <SolidColorBrush x:Key="IntelijBlue" Color="#A63F03"/>
     <!--<Image Source="icons8-settings-64.png" x:Key="Settings"/>-->
-    <Image Source="settings.png" x:Key="SettingsImage"/>
-    <Image Source="plant.png" x:Key="PlantImage"/>
-    <Image Source="purchases.png" x:Key="PurchasesImage"/>
-    <Image Source="stations.png" x:Key="StationsImage"/>
-    <Image Source="admin.png" x:Key="AdminImage"/>
-    <Image Source="cooperant.png" x:Key="CooperantImage"/>
-    <Image Source="payments.png" x:Key="PaymentsImage"/>
-    <Image Source="logout.png" x:Key="LogoutImage"/>
+    <Image Source="/Assets/settings.png" x:Key="SettingsImage"/>
+    <Image Source="/Assets/plant.png" x:Key="PlantImage"/>
+    <Image Source="/Assets/purchases.png" x:Key="PurchasesImage"/>
+    <Image Source="/Assets/stations.png" x:Key="StationsImage"/>
+    <Image Source="/Assets/admin.png" x:Key="AdminImage"/>
+    <Image Source="/Assets/cooperant.png" x:Key="CooperantImage"/>
+    <Image Source="/Assets/payments.png" x:Key="PaymentsImage"/>
+    <Image Source="/Assets/logout.png" x:Key="LogoutImage"/>
     <SolidColorBrush x:Key="NavMenu" Color="#F28E13"/>
 </ResourceDictionary>

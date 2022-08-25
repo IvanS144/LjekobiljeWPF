@@ -11,8 +11,8 @@
         Title="{DynamicResource Settings}">
     <Grid>
         <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource ChooseLanguage}" HorizontalAlignment="Left" Margin="8,90,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="LanguageButton1" Foreground="{DynamicResource ForegroundColor}" Content="Srpski" HorizontalAlignment="Left" GroupName="Language" Margin="10,127,0,0" VerticalAlignment="Top" Click="LanguageRadioButtonClick"/>
-        <RadioButton x:Name="LanguageButton2" Foreground="{DynamicResource ForegroundColor}" Content="English" HorizontalAlignment="Left" GroupName="Language" Click="LanguageRadioButtonClick" Margin="96,127,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="LanguageButton1" Foreground="{DynamicResource ForegroundColor}" Content="Srpski" Tag="Srpski" HorizontalAlignment="Left" GroupName="Language" Margin="10,127,0,0" VerticalAlignment="Top" Click="LanguageRadioButtonClick"/>
+        <RadioButton x:Name="LanguageButton2" Foreground="{DynamicResource ForegroundColor}" Content="English" Tag="English" HorizontalAlignment="Left" GroupName="Language" Click="LanguageRadioButtonClick" Margin="96,127,0,0" VerticalAlignment="Top"/>
         <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource ChooseTheme}" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="ThemeButton1" Foreground="{DynamicResource ForegroundColor}" Content="{DynamicResource Dark}" Tag="Dark"  HorizontalAlignment="Left" GroupName="Theme" Margin="8,205,0,0" VerticalAlignment="Top" Click="ThemeClick"/>
         <RadioButton x:Name="ThemeButton2" Foreground="{DynamicResource ForegroundColor}" Content="{DynamicResource Light}" Tag="Light" HorizontalAlignment="Left" GroupName="Theme" Click="ThemeClick" Margin="96,205,0,0" VerticalAlignment="Top"/>

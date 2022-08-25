@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="admin.png">
+    <Content Include="Assets\admin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\delete.png">
@@ -45,7 +45,7 @@
     <Content Include="Assets\ljekobilja3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="cooperant.png">
+    <Content Include="Assets\cooperant.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="edit.png">
@@ -57,29 +57,29 @@
     <Content Include="edit3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons8-search-48.png">
+    <Content Include="Assets\icons8-search-48.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons8-settings-64.png">
+    <Content Include="Assets\icons8-settings-64.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ljekobilje.ico" />
-    <Content Include="logout.png">
+    <Content Include="Assets\logout.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="payments.png">
+    <Content Include="Assets\payments.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="plant.png">
+    <Content Include="Assets\plant.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="purchases.png">
+    <Content Include="Assets\purchases.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="settings.png">
+    <Content Include="Assets\settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="stations.png">
+    <Content Include="Assets\stations.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="upload.png">

@@ -10,72 +10,68 @@
       Title="StationsPage">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <!--<Button Content="Search"></Button>-->
-            <Image Source="icons8-search-48.png" Height="20"/>
+            <Image Source="/Assets/icons8-search-48.png" Height="20"/>
             <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
             <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Search}"/>
             <ComboBox x:Name="SearchCategoryCombo" MinWidth="100" SelectedIndex="0" SelectedValuePath="Content" SelectedValue="{Binding DataContext.SelectedCategory, ElementName=_AdministratorPage, Mode=TwoWay}">
                 <ComboBoxItem Content="-"/>
+                <ComboBoxItem Content="ID"/>
                 <ComboBoxItem Content="{DynamicResource Username}"/>
-                <ComboBoxItem Content="{DynamicResource Password}"/>
             </ComboBox>
             <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=_AdministratorPage, Path=DataContext.ClearFilterCommand}">
                 <Image Source="/Assets/icons8-cancel-48.png" Height="20"/>
             </Button>
         </StackPanel>
-        <!--<ScrollViewer MinHeight="250">-->
-            <DataGrid Style="{DynamicResource DataGridStyle}" Height="400" ItemsSource="{Binding Users}" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Width="12.5*" Binding="{Binding UserId}"/>
-                    <DataGridTextColumn Width="22*" Binding="{Binding Username}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource Username}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="22*" Binding="{Binding Password}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource Password}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding UserTypeText}" Width="12*">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource UserType}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTemplateColumn Width="100">
+        <DataGrid Style="{DynamicResource DataGridStyle}" Height="400" ItemsSource="{Binding Users}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="12.5*" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Width="22*" Binding="{Binding Username}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource Username}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="22*" Binding="{Binding Password}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource Password}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding UserTypeText}" Width="12*">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource UserType}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <Image Margin="35,0,0,0" Source="/Assets/edit5.png" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Style="{DynamicResource UpdateButton}" Content="{DynamicResource Update}" Command="{Binding ElementName=_AdministratorPage, Path=DataContext.UpdateCommand}" CommandParameter="{Binding}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100">
+                        <DataTemplate>
+                            <Button Style="{DynamicResource UpdateButton}" Content="{DynamicResource Update}" Command="{Binding ElementName=_AdministratorPage, Path=DataContext.UpdateCommand}" CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <Image Margin="35,0,0,0" Source="/Assets/delete.png" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Style="{DynamicResource DangerButton}" Content="{DynamicResource Delete}" Command="{Binding ElementName=_AdministratorPage, Path=DataContext.DeleteCommand}" CommandParameter="{Binding}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-
-        <!--</ScrollViewer>-->
+                        <DataTemplate>
+                            <Button Style="{DynamicResource DangerButton}" Content="{DynamicResource Delete}" Command="{Binding ElementName=_AdministratorPage, Path=DataContext.DeleteCommand}" CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <GroupBox HorizontalAlignment="Left" Height="60" Margin="2,2,2,2">
             <GroupBox.Header>
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource AddNewEntryHeader}"/>
@@ -86,7 +82,7 @@
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Password}"/>
                 <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding Password, Mode=TwoWay}" MinWidth="110"></TextBox>
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource UserType}"/>
-                <ComboBox Width="100" SelectedIndex="{Binding UserType, Mode=TwoWay}">
+                <ComboBox Width="150" SelectedIndex="{Binding UserType, Mode=TwoWay}">
                     <ComboBoxItem Content="{DynamicResource Trainee}"/>
                     <ComboBoxItem Content="{DynamicResource Worker}"/>
                     <ComboBoxItem Content="{DynamicResource Administrator}"/>

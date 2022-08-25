@@ -34,14 +34,15 @@ namespace Ljekobilje
             App app = Application.Current as App;
             switch (app.CurrentUser.Language)
             {
-                //case 2: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Language.en.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; break; }
-                //case 1: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Languages.sr.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; break; }
+                case 2: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Language.en.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; break; }
+                case 1: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Language.sr.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0] = dictionary; break; }
                 default: break;
             }
             switch(app.CurrentUser.Theme)
             {
-                //case 1: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Language.en.xaml", UriKind.Relative); app.Resources.MergedDictionaries[0]=dictionary; break;  }
-                //case 2: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\DarkTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1]=dictionary; break; }
+                case 1: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Yelow.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1]=dictionary; break;  }
+                case 2: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\DarkTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1]=dictionary; break; }
+                case 3: { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\plant-theme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; break; }
                 default: break;
             }
             //ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Languages.sr.xaml", UriKind.Relative); app.Resources.MergedDictionaries.Add(dictionary);

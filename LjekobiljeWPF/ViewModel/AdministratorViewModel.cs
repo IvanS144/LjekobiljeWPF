@@ -1,5 +1,7 @@
-﻿using Ljekobilje.Dialogs;
+﻿using Ljekobilje;
+using Ljekobilje.Dialogs;
 using Ljekobilje.Projections;
+using LjekobiljeWPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,26 +11,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Ljekobilje
+namespace LjekobiljeWPF.ViewModel
 {
     public class AdministratorViewModel : BaseViewModel
     {
-        private String _filterText;
-        private String _selectedCategory;
+        private string _filterText;
+        private string _selectedCategory;
         private ObservableCollection<UserProjection> _users = new ObservableCollection<UserProjection>();
         public ObservableCollection<UserProjection> Users { get { return _users; } set { _users = value; NotifyPropertyChanged("Users"); } }
-        public String Username { get; set; }
-        public String Password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
-        public String Language { get; set; } = "English";
+        public string Language { get; set; } = "English";
 
-        public String Theme { get; set; } = "Light";
+        public string Theme { get; set; } = "Light";
 
         public int UserType { get; set; }
 
-        public String FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
+        public string FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
 
-        public String SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
+        public string SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
 
         public DelegateCommand<UserProjection> DeleteCommand { get; set; }
 
@@ -42,12 +44,12 @@ namespace Ljekobilje
 
         public AdministratorViewModel()
         {
-            using(LjekobiljeEntities entities = new LjekobiljeEntities())
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
             {
-                (from u in entities.Users select u).ToList().ForEach(u => _users.Add(new UserProjection(u)));
-                DeleteCommand= new DelegateCommand<UserProjection>(Delete);
+                (from u in db.Users select u).ToList().ForEach(u => _users.Add(new UserProjection(u)));
+                DeleteCommand = new DelegateCommand<UserProjection>(Delete);
                 AddCommand = new ActionCommand(Add);
-                UpdateCommand= new DelegateCommand<UserProjection>(Update);
+                UpdateCommand = new DelegateCommand<UserProjection>(Update);
                 ClearFilterCommand = new ActionCommand(ClearFilter, true);
                 View = CollectionViewSource.GetDefaultView(_users);
                 View.Filter = Filter;
@@ -58,13 +60,13 @@ namespace Ljekobilje
         public void Delete(UserProjection u)
         {
             YesNoDialog dialog = new YesNoDialog();
-            bool? result = dialog.ShowDialog(App.GetLanguage() == 1 ? "Da li zaista želite da obrišete korisnika čiji je id " : "Do you want to delete user whose id is " + u.UserId);
+            bool? result = dialog.ShowDialog((App.GetLanguage() == 1 ? "Da li zaista želite da obrišete korisnika čiji je id " : "Do you want to delete user whose id is ") + u.UserId +" "+ "?");
             if (result == true)
             {
-                using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                using (LjekobiljeEntities db = new LjekobiljeEntities())
                 {
-                    entities.Entry(u.User).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-                    entities.SaveChanges();
+                    db.Entry(u.User).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                    db.SaveChanges();
                     Users.Remove(u);
                 }
             }
@@ -74,16 +76,16 @@ namespace Ljekobilje
         {
             try
             {
-                using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                using (LjekobiljeEntities db = new LjekobiljeEntities())
                 {
                     User u = new User();
                     u.Username = Username;
                     u.Password = Password;
-                    u.Language = (Language == "English") ? 1 : 2;
-                    u.Theme = (Theme == "Lignt") ? 1 : 2;
+                    u.Language = Language == "English" ? 1 : 2;
+                    u.Theme = Theme == "Lignt" ? 1 : 2;
                     u.UserType = UserType + 1;
-                    u = entities.Users.Add(u).Entity;
-                    entities.SaveChanges();
+                    u = db.Users.Add(u).Entity;
+                    db.SaveChanges();
                     _users.Add(new UserProjection(u));
                 }
             }
@@ -98,15 +100,15 @@ namespace Ljekobilje
         {
             UpdateUserDialog dialog = new UpdateUserDialog(user);
             bool? result = dialog.ShowDialog();
-            if(result == true)
+            if (result == true)
             {
                 try
                 {
                     (user.Username, user.Password, user.UserType) = dialog.getFields();
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
-                        entities.Entry(user.User).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        entities.SaveChanges();
+                        db.Entry(user.User).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
                 catch
@@ -117,15 +119,15 @@ namespace Ljekobilje
             }
         }
 
-        public Boolean Filter(object obj)
+        public bool Filter(object obj)
         {
-            Boolean flag = true;
+            bool flag = true;
             if (FilterText == null || FilterText == "")
                 return true;
             if (obj is UserProjection u)
                 switch (SelectedCategory)
                 {
-                    case "UserID" or "ID korisnika": flag = u.UserId.ToString().Contains(FilterText); break;
+                    case "ID": flag = u.UserId.ToString().Contains(FilterText); break;
                     case "Username" or "Korisničko ime": flag = u.Username.ToString().Contains(FilterText); break;
                     default: flag = true; break;
                 }

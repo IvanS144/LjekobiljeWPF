@@ -1,4 +1,7 @@
-﻿using Ljekobilje.Dialogs;
+﻿using Ljekobilje;
+using Ljekobilje.Dialogs;
+using LjekobiljeWPF;
+using LjekobiljeWPF.Projections;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,32 +12,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Ljekobilje
+namespace LjekobiljeWPF.ViewModel
 {
-    public class PaymentViewModel:BaseViewModel
+    public class PaymentViewModel : BaseViewModel
     {
         private ObservableCollection<PaymentProjection> _payments = new ObservableCollection<PaymentProjection>();
 
-        public ObservableCollection<PaymentProjection> Payments { get => _payments; set { _payments = value; base.NotifyPropertyChanged("Payments"); } }
+        public ObservableCollection<PaymentProjection> Payments { get => _payments; set { _payments = value; NotifyPropertyChanged("Payments"); } }
 
         public DelegateCommand<PaymentProjection> DeleteCommand { get; private set; }
 
         public ActionCommand ClearFilterCommand { get; set; }
 
-        private String _filterText;
-        private String _selectedCategory;
+        private string _filterText;
+        private string _selectedCategory;
 
-        public String FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
+        public string FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
 
-        public String SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
+        public string SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
 
-        private ICollectionView View; 
+        private ICollectionView View;
 
         public PaymentViewModel()
         {
-            using(LjekobiljeEntities entities = new LjekobiljeEntities())
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
             {
-                (from payment in entities.Payments.Include("CooperantAccount.Account").Include("CooperantAccount.Cooperant") select payment).ToList().ForEach(e => _payments.Add(new PaymentProjection(e)));
+                (from payment in db.Payments.Include("CooperantAccount.Account").Include("CooperantAccount.Cooperant") select payment).ToList().ForEach(e => _payments.Add(new PaymentProjection(e)));
             }
             DeleteCommand = new DelegateCommand<PaymentProjection>(Delete);
             ClearFilterCommand = new ActionCommand(ClearFilter, true);
@@ -52,11 +55,11 @@ namespace Ljekobilje
             {
                 try
                 {
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
                         Payment payment = new Payment() { PaymentId = paymentPr.PaymentId };
-                        entities.Entry(payment).State = EntityState.Deleted;
-                        entities.SaveChanges();
+                        db.Entry(payment).State = EntityState.Deleted;
+                        db.SaveChanges();
                         _payments.Remove(paymentPr);
                     }
                 }
@@ -68,9 +71,9 @@ namespace Ljekobilje
             }
         }
 
-        public Boolean Filter(object obj)
+        public bool Filter(object obj)
         {
-            Boolean flag = false;
+            bool flag = false;
             if (FilterText == null || FilterText == "")
                 return true;
             if (obj is PaymentProjection payment)

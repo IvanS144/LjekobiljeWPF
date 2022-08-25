@@ -1,5 +1,8 @@
-﻿using Ljekobilje.Dialogs;
+﻿using Ljekobilje;
+using Ljekobilje.Dialogs;
 using Ljekobilje.View;
+using LjekobiljeWPF;
+using LjekobiljeWPF.Projections;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,12 +12,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Ljekobilje
+namespace LjekobiljeWPF.ViewModel
 {
     internal class CooperantViewModel : BaseViewModel
     {
         private ObservableCollection<CooperantProjection> _cooperants = new ObservableCollection<CooperantProjection>();
-        public ObservableCollection<CooperantProjection> Cooperants { get => _cooperants; set { _cooperants = value;} }
+        public ObservableCollection<CooperantProjection> Cooperants { get => _cooperants; set { _cooperants = value; } }
 
         public DelegateCommand<CooperantProjection> UpdateCommand { get; set; }
 
@@ -42,19 +45,19 @@ namespace Ljekobilje
 
         public List<Station> Stations { get; set; }
 
-        private String _filterText;
-        private String _selectedCategory;
+        private string _filterText;
+        private string _selectedCategory;
 
-        public String FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
+        public string FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
 
-        public String SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
+        public string SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
 
         public CooperantViewModel()
         {
-            using(LjekobiljeEntities entities = new LjekobiljeEntities())
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
             {
-                Stations = (from station in entities.Stations select station).ToList();
-                (from cooperant in entities.Cooperants select cooperant).ToList().ForEach(cooperant => _cooperants.Add(new CooperantProjection(cooperant)));
+                Stations = (from station in db.Stations select station).ToList();
+                (from cooperant in db.Cooperants select cooperant).ToList().ForEach(cooperant => _cooperants.Add(new CooperantProjection(cooperant)));
                 DeleteCommand = new DelegateCommand<CooperantProjection>(Delete);
                 AddCooperantCommand = new ActionCommand(AddCooperant);
                 UpdateCommand = new DelegateCommand<CooperantProjection>(Update);
@@ -86,23 +89,23 @@ namespace Ljekobilje
             return false;
         }*/
 
-        public Boolean Filter(object obj)
+        public bool Filter(object obj)
         {
-            Boolean flag = true;
+            bool flag = true;
             if (FilterText == null || FilterText == "")
                 return true;
-            if(obj is CooperantProjection cooperant)
+            if (obj is CooperantProjection cooperant)
                 switch (SelectedCategory)
                 {
-                    case "Cooperant ID" or "ID kooperanta": flag= cooperant.CooperantId.ToString().Contains(FilterText); break;
-                    case "First name" or "Ime": flag= cooperant.FirstName.ToString().Contains(FilterText); break;
+                    case "Cooperant ID" or "ID kooperanta": flag = cooperant.CooperantId.ToString().Contains(FilterText); break;
+                    case "First name" or "Ime": flag = cooperant.FirstName.ToString().Contains(FilterText); break;
                     case "Last name" or "Prezime": flag = cooperant.LastName.ToString().Contains(FilterText); break;
-                    case "Station number" or "Broj stanice": flag=cooperant.StationId.ToString().Contains(FilterText); break;
+                    case "Station number" or "Broj stanice": flag = cooperant.StationId.ToString().Contains(FilterText); break;
                     default: flag = true; break;
                 }
-                return flag;
-            
-           
+            return flag;
+
+
         }
 
         public void Delete(CooperantProjection cooperantProjection)
@@ -113,10 +116,10 @@ namespace Ljekobilje
             {
                 try
                 {
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
-                        entities.Entry(cooperantProjection.Cooperant).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-                        entities.SaveChanges();
+                        db.Entry(cooperantProjection.Cooperant).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                        db.SaveChanges();
                     }
 
                     _cooperants.Remove(cooperantProjection);
@@ -135,7 +138,7 @@ namespace Ljekobilje
         {
             try
             {
-                using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                using (LjekobiljeEntities db = new LjekobiljeEntities())
                 {
                     Cooperant cooperant = new Cooperant();
                     cooperant.FirstName = FirstName;
@@ -145,14 +148,14 @@ namespace Ljekobilje
                     cooperant.StationId = SelectedStationId;
                     cooperant.City = City;
                     cooperant.Adress = Address;
-                    cooperant = entities.Cooperants.Add(cooperant).Entity;
-                    entities.SaveChanges();
+                    cooperant = db.Cooperants.Add(cooperant).Entity;
+                    db.SaveChanges();
                     Cooperants.Add(new CooperantProjection(cooperant));
                 }
             }
             catch
             {
-                
+
                 new ErrorDialog().ShowDialog(App.GetLanguage() == 1 ? "Kreiranje nije uspjelo, provjerite unesena polja" : "Failed to add new cooperant, check the fileds you entered");
             }
         }
@@ -161,16 +164,16 @@ namespace Ljekobilje
         {
             UpdateCooperantDialog dialog = new UpdateCooperantDialog(cooperant);
             bool? result = dialog.ShowDialog();
-            if(result == true)
+            if (result == true)
             {
                 try
                 {
                     (cooperant.FirstName, cooperant.LastName, cooperant.Address, cooperant.Email, cooperant.Phone, cooperant.City, cooperant.StationId) = dialog.getFields();
                     cooperant.Cooperant.Station = null;
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
-                        entities.Entry(cooperant.Cooperant).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        entities.SaveChanges();
+                        db.Entry(cooperant.Cooperant).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
                 catch

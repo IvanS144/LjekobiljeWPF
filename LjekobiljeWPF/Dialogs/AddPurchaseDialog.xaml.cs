@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LjekobiljeWPF.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,13 @@ namespace Ljekobilje.Dialogs
         {
             InitializeComponent();
             AddPurchaseViewModel = new AddPurchaseViewModel(this);
+            DataContext = AddPurchaseViewModel;
+        }
+
+        public AddPurchaseDialog(Purchasespaid purchase)
+        {
+            InitializeComponent();
+            AddPurchaseViewModel = new AddPurchaseViewModel(this, purchase.PlantPurchaseId);
             DataContext = AddPurchaseViewModel;
         }
 

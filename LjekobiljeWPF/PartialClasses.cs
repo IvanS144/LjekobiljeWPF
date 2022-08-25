@@ -26,4 +26,20 @@ namespace Ljekobilje
     {
         public bool NotPaid { get { return (Status > 0) ? false : true; } }
     }
+
+    public partial class Cooperant
+    {
+        public override string ToString()
+        {
+            return "[" + CooperantId + "]" + " " + FirstName + " " + LastName;
+        }
+    }
+
+    public partial class Plant
+    {
+        public override string ToString()
+        {
+            return "[" + PlantId + "]" + " " + PlantName;
+        }
+    }
 }

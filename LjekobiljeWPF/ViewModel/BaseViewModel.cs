@@ -4,14 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
-namespace Ljekobilje
+
+namespace LjekobiljeWPF.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void NotifyPropertyChanged(String arg)
+        public void NotifyPropertyChanged(string arg)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(arg));
         }

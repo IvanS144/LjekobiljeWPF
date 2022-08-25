@@ -1,4 +1,6 @@
-﻿using Ljekobilje.Dialogs;
+﻿using Ljekobilje;
+using Ljekobilje.Dialogs;
+using LjekobiljeWPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,22 +10,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Ljekobilje
+namespace LjekobiljeWPF.ViewModel
 {
-    public class StationsViewModel: BaseViewModel
+    public class StationsViewModel : BaseViewModel
     {
         private ObservableCollection<Stationsview> _stations = new ObservableCollection<Stationsview>();
         public ObservableCollection<Stationsview> Stations { get { return _stations; } }
 
-        public String Address { get; set; }
-        public String City { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
 
-        private String _filterText;
-        private String _selectedCategory;
+        private string _filterText;
+        private string _selectedCategory;
 
-        public String FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
+        public string FilterText { get { return _filterText; } set { _filterText = value; View.Refresh(); NotifyPropertyChanged("FilterText"); } }
 
-        public String SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
+        public string SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; View.Refresh(); NotifyPropertyChanged("SelectedCategory"); } }
 
         public DelegateCommand<Stationsview> DeleteCommand { get; set; }
 
@@ -50,9 +52,9 @@ namespace Ljekobilje
         private void LoadDataGrid()
         {
             _stations.Clear();
-            using (LjekobiljeEntities entities = new LjekobiljeEntities())
+            using (LjekobiljeEntities db = new LjekobiljeEntities())
             {
-                (from station in entities.Stationsviews select station).ToList().ForEach(s => _stations.Add(s));
+                (from station in db.Stationsviews select station).ToList().ForEach(s => _stations.Add(s));
             }
         }
 
@@ -64,11 +66,11 @@ namespace Ljekobilje
             {
                 try
                 {
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
                         Station station = new Station() { StationId = stationVw.StationId };
-                        entities.Entry(station).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-                        entities.SaveChanges();
+                        db.Entry(station).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                        db.SaveChanges();
                     }
                     _stations.Remove(stationVw);
                 }
@@ -88,11 +90,11 @@ namespace Ljekobilje
             {
                 try
                 {
-                    using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                    using (LjekobiljeEntities db = new LjekobiljeEntities())
                     {
-                        Station station = entities.Stations.Where(s => s.StationId == stationVw.StationId).First();
+                        Station station = db.Stations.Where(s => s.StationId == stationVw.StationId).First();
                         (station.Adress, station.City) = dialog.getFields();
-                        entities.SaveChanges();
+                        db.SaveChanges();
                     }
                     LoadDataGrid();
                 }
@@ -109,13 +111,13 @@ namespace Ljekobilje
         {
             try
             {
-                using (LjekobiljeEntities entities = new LjekobiljeEntities())
+                using (LjekobiljeEntities db = new LjekobiljeEntities())
                 {
                     Station station = new Station();
                     station.Adress = Address;
                     station.City = City;
-                    entities.Stations.Add(station);
-                    entities.SaveChanges();
+                    db.Stations.Add(station);
+                    db.SaveChanges();
 
                 }
                 LoadDataGrid();
@@ -127,9 +129,9 @@ namespace Ljekobilje
             }
         }
 
-        public Boolean Filter(object obj)
+        public bool Filter(object obj)
         {
-            Boolean flag = false;
+            bool flag = false;
             if (FilterText == null || FilterText == "")
                 return true;
             if (obj is Stationsview station)

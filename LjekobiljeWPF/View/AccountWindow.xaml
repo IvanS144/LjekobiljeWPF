@@ -10,13 +10,12 @@
         x:Name="_AccountWindow"
         MinHeight="450" MinWidth="800">
     <StackPanel>
-        <!--<ScrollViewer MinHeight="250">-->
-            <DataGrid Style="{DynamicResource DataGridStyle}" Height="350" ItemsSource="{Binding Accounts}" AutoGenerateColumns="False">
+        <DataGrid Style="{DynamicResource DataGridStyle}" Height="350" ItemsSource="{Binding Accounts}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="12.5*" Binding="{Binding AccountId}">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{DynamicResource StationNumber}"/>
+                                <TextBlock Text="{DynamicResource AccountID}"/>
                             </DataTemplate>
                         </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>

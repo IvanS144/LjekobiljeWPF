@@ -51,63 +51,16 @@
             </StackPanel>
             <Separator Margin="0,10,0,0" Background="{DynamicResource ForegroundColor}"/>
             <Label Style="{DynamicResource LabelStyle}" FontSize="20" Content="{DynamicResource Entries}"/>
-            <!--<StackPanel Orientation="Horizontal">
-            <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Plant}"/>
-            <ComboBox ItemsSource="{Binding Plants}" MinWidth="100" SelectedValuePath="PlantID" SelectedValue="{Binding DataContext.SelectedPlantID, ElementName=This, Mode=TwoWay}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="PlantID"/>
-                                    <Binding Path="PlantName"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Quantity}"/>
-            <control:DecimalUpDown MinWidth="100" Minimum="0"  Value="{Binding DataContext.Quantity, ElementName=This, Mode=TwoWay}"/>
-        -->
-            <!--</StackPanel>-->
-            <!--<StackPanel Orientation="Horizontal">-->
-            <!--
-            <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource RetailPrice}"/>
-            <control:DecimalUpDown Style="{DynamicResource Style}" MinWidth="100px" Minimum="0" Value="{Binding DataContext.RetailPrice, ElementName=This, Mode=TwoWay}"/>
-            <Button Content="Dodaj" Command="{Binding ElementName=This, Path=DataContext.AddEntryCommand}"/>
-        </StackPanel>-->
-            <!--<GroupBox>-->
-            <StackPanel>
-                <!--<ComboBox ItemsSource="{Binding Plants}" SelectedValuePath="PlantID" SelectedValue="{Binding DataContext.SelectedPlantID, ElementName=This, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} {1}">
-                                        <Binding Path="PlantID"/>
-                                        <Binding Path="PlantName"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>-->
-                <!--<TextBox/>-->
-                <!--<Button Content="Dodaj" Command="{Binding ElementName=This, Path=DataContext.AddEntryCommand}"/>-->
-            </StackPanel>
-            <!--</GroupBox>-->
-            <!--<ScrollViewer MinHeight="250">-->
             <DataGrid Height="250" Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding PurchaseEntries}" AutoGenerateColumns="false">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="12.5*" Binding="{Binding PlantID}">
+                    <DataGridTextColumn Width="12.5*" Binding="{Binding PlantId}">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{DynamicResource PlantID}"/>
                             </DataTemplate>
                         </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="20*" Binding="{Binding PlantName}">
+                    <DataGridTextColumn Width="20*" Binding="{Binding Plant.PlantName}">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{DynamicResource PlantName}"/>
@@ -121,7 +74,7 @@
                             </DataTemplate>
                         </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="12.5*" Binding="{Binding Retail_price}">
+                    <DataGridTextColumn Width="12.5*" Binding="{Binding RetailPrice}">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{DynamicResource RetailPrice}"/>
@@ -167,10 +120,6 @@
                     <Button Width="60" Style="{DynamicResource AddButton}" Content="{DynamicResource AddNew}" Command="{Binding ElementName=This, Path=DataContext.AddEntryCommand}" Margin="20,0,5,0"/>
                 </StackPanel>
             </GroupBox>
-            <!--<StackPanel Margin="0,30,0,0"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Content="{DynamicResource Create}" Command="{Binding ElementName=This, Path=DataContext.AddPurchaseCommand}" IsDefault="True"/>
-                <Button Content="{DynamicResource Cancel}" Margin="10,0,10,0"  Click="CancelButton_Click" IsCancel="True"/>
-            </StackPanel>-->
         </StackPanel>
         <StackPanel Margin="0,30,0,10"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Content="{DynamicResource Create}" Command="{Binding ElementName=This, Path=DataContext.AddPurchaseCommand}" IsDefault="True"/>

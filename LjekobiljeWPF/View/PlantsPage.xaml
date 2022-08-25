@@ -10,10 +10,8 @@
       x:Name="This"
       Title="PlantsPage">
     <StackPanel>
-        <!--<local:BasicSearchBar/>-->
         <StackPanel Orientation="Horizontal">
-            <!--<Button Content="Search"></Button>-->
-            <Image Source="icons8-search-48.png" Height="20"/>
+            <Image Source="/Assets/icons8-search-48.png" Height="20"/>
             <TextBox Style="{DynamicResource TextBoxStyle}" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
             <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource Search}"/>
             <ComboBox MinWidth="100" SelectedIndex="0" SelectedValuePath="Content" SelectedValue="{Binding DataContext.SelectedCategory, ElementName=This, Mode=TwoWay}">
@@ -29,44 +27,43 @@
                 <Image Source="/Assets/icons8-cancel-48.png" Height="20"/>
             </Button>
         </StackPanel>
-        <!--<ScrollViewer Height="250">-->
-            <DataGrid Style="{DynamicResource DataGridStyle}" Height="500" AutoGenerateColumns="false" IsReadOnly="true" ItemsSource="{Binding Plants}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn  Width="12.5*" Binding="{Binding PlantId}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource PlantID}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="12.5*" Binding="{Binding PlantName}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource PlantName}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="12.5*" Binding="{Binding LatinName}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource LatinName}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="12.5*" Binding="{Binding MedicName}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource MedicName}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Width="12*" Binding="{Binding RetailPrice}">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{DynamicResource RetailPrice}"/>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
+        <DataGrid Style="{DynamicResource DataGridStyle}" Height="500" AutoGenerateColumns="false" IsReadOnly="true" ItemsSource="{Binding Plants}">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="12.5*" Binding="{Binding PlantId}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource PlantID}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="12.5*" Binding="{Binding PlantName}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource PlantName}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="12.5*" Binding="{Binding LatinName}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource LatinName}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="12.5*" Binding="{Binding MedicName}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource MedicName}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="12*" Binding="{Binding RetailPrice}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource RetailPrice}"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
                 <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
@@ -92,9 +89,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-            </DataGrid>
-
-        <!--</ScrollViewer>-->
+        </DataGrid>
         <GroupBox HorizontalAlignment="Left" Height="60" Margin="2,2,2,2">
             <GroupBox.Header>
                 <Label Style="{DynamicResource LabelStyle}" Content="{DynamicResource AddNewEntryHeader}"/>

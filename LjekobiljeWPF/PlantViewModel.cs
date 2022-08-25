@@ -1,4 +1,7 @@
 ﻿using Ljekobilje.Dialogs;
+using LjekobiljeWPF;
+using LjekobiljeWPF.Projections;
+using LjekobiljeWPF.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

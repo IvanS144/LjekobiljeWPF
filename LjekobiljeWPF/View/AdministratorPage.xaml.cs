@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LjekobiljeWPF.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,14 +19,15 @@ namespace Ljekobilje
     /// <summary>
     /// Interaction logic for StationsPage.xaml
     /// </summary>
-    public partial class StationsPage : Page
+    public partial class AdministratorPage : Page
     {
-        public StationsViewModel StationsViewModel { get; set; }
-        public StationsPage()
+        //public StationsViewModel StationsViewModel { get; set; }
+        public AdministratorPage()
         {
             InitializeComponent();
-            StationsViewModel = new StationsViewModel();
-            DataContext= StationsViewModel;
+            DataContext = new AdministratorViewModel();
+            //StationsViewModel = new StationsViewModel();
+            //DataContext= StationsViewModel;
         }
     }
 }
