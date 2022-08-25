@@ -13,7 +13,7 @@ namespace Ljekobilje
     /// </summary>
     public partial class App : Application
     {
-        public User CurrentUser { get; set; } = new User() { UserType = 3, Theme = 1, Language = 1 };
+        public User CurrentUser { get; set; }
         //public bool SettingsChanged { get; set; } = false;
 
         public static int? GetLanguage()

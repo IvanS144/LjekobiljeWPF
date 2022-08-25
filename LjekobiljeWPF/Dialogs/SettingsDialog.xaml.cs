@@ -20,16 +20,18 @@ namespace Ljekobilje
     /// </summary>
     public partial class SettingsDialog : Window
     {
-        private int theme = (Application.Current as App).CurrentUser.Theme.Value;
+        private int theme;
 
-        private int language = (Application.Current as App).CurrentUser.Language.Value;
+        private int language;
         public SettingsDialog()
         {
             InitializeComponent();
+           theme = (Application.Current as App).CurrentUser.Theme.Value;
+language = (Application.Current as App).CurrentUser.Language.Value;
             switch(theme)
             {
-                case 1: ThemeButton1.IsChecked = true; break;
-                case 2: ThemeButton2.IsChecked = true; break;
+                case 1: ThemeButton2.IsChecked = true; break;
+                case 2: ThemeButton1.IsChecked = true; break;
                 case 3: ThemeButton3.IsChecked = true; break;
                 default: break;
             }
@@ -72,8 +74,8 @@ namespace Ljekobilje
             switch (button.Tag)
             {
                 case "Light": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\Yelow.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 1; break; }
-                case "Dark": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\DarkTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; app.CurrentUser.Theme = 2; break; }
-                case "Green": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\plant-theme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 1; break; }
+                case "Dark": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\DarkTheme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme= 2; break; }
+                case "Green": { ResourceDictionary dictionary = new ResourceDictionary(); dictionary.Source = new Uri("..\\plant-theme.xaml", UriKind.Relative); app.Resources.MergedDictionaries[1] = dictionary; theme = 3; break; }
                 default: break;
             }
         }
